@@ -9,6 +9,7 @@
 /* ************************************************************************** */
 
 #include "../includes/num2words.h"
+#include <stdlib.h>
 
 #define BUFFER_SIZE 2048
 
