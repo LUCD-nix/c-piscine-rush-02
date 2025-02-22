@@ -17,6 +17,10 @@ typedef struct s_dictionary
 void			ft_putstr(char *str);
 t_dictionary	*get_dictionary(char *dict_path);
 int				ft_strlen(char *str);
+bool			is_zero_padded(char *str);
+bool			is_magnitude(char *str);
+bool			ft_strnequals(char *str1, char *str2, int n);
+
 
 # define PRINT_START_STOP -1;
 # define PRINT_HORIZONTAL_LINE -2;

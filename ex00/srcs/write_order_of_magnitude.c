@@ -6,13 +6,13 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:14:28 by lucorrei          #+#    #+#             */
-/*   Updated: 2025/02/22 20:01:16 by lucorrei         ###   ########.fr       */
+/*   Updated: 2025/02/22 22:13:08 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/num2words.h"
 
 bool	try_full_nums(t_dictionary dict, char *trying, int *printer, int len)
-{	
+{
 	int	i;
 
 	if (len == 0)
@@ -40,18 +40,22 @@ bool	try_full_nums(t_dictionary dict, char *trying, int *printer, int len)
 	return (false);
 }
 
-bool	write_units(const t_dictionary dict, char *to_write, int *printer)
+bool	write_units(const t_dictionary dict, char *to_write, int *printer, bool h)
 {
 	int	i;
 
 	i = -1;
-	if (!(*(to_write - 1) <= 0))
-		*printer++ = PRINT_HORIZONTAL_LINE
+	// TODO THIS WONT SUFFICE, NEED MORE SAFETY
+	if (!h && !(*(to_write - 1) == '0'))
+		*printer++ = PRINT_HORIZONTAL_LINE;
 	while (dict.nums[++i])
 	{
 		if ((dict.sizes[i]) == 1 && dict.nums[i][0] == *to_write)
 		{
 			*printer = i;
+
+			if (!h)
+				*(printer + 1) = -1;
 			return (true);
 		}
 	}
@@ -60,17 +64,18 @@ bool	write_units(const t_dictionary dict, char *to_write, int *printer)
 
 bool	write_tens(t_dictionary dict, char *to_write, int *printer)
 {
-	int	i;
+	int		i;
 	bool	success;
 
 	i = -1;
+	success = false;
 	while (*to_write != '0' && dict.nums[++i])
 	{
 		if (dict.sizes[i] == 2 && dict.nums[i][0] == *to_write)
 		{
 			if (*to_write >= '2')
 			{
-				*printer++ = i;
+				*printer = i;
 				success = true;
 				break ;
 			}
@@ -81,31 +86,31 @@ bool	write_tens(t_dictionary dict, char *to_write, int *printer)
 			}
 		}
 	}
-	if (success || to_write == '0')
-		return (write_units(dict, to_write + 1, printer + success));
+	if (success || *to_write == '0')
+		return (write_units(dict, to_write + 1, printer + success, false));
 	return (try_full_nums(dict, to_write, printer, 2));
 }
 
-bool	write_hundreds(t_dictionary dict, char *to_write, int *printer, bool is_final)
-{	
-	int	i;
+bool	write_hundreds(t_dictionary dict, char *to_write, int *printer)
+{
+	int		i;
 	bool	success;
 
 	i = -1;
 	success = false;
-	while (*to_write != '0' && dict_nums[++i])
+	while (*to_write != '0' && dict.nums[++i])
 	{
 		if (dict.sizes[i] == 3 && ft_strnequals(dict.nums[i], "100", 3) == true)
 		{
-			if (!write_units(dict, to_write, printer))
-				return (false);
+			if (!write_units(dict, to_write, printer, true))
+				break ;
 			*(++printer) = i;
 			success = true;
+			*++printer = PRINT_AND;
 			break ;
 		}
 	}
-	*printer++ = PRINT_AND;
 	if (success || *to_write == '0')
-		return (write_tens(dict, to_write + 1, printer + 1));
+		return (write_tens(dict, to_write + 1, printer + success));
 	return (try_full_nums(dict, to_write, printer, 3));
 }

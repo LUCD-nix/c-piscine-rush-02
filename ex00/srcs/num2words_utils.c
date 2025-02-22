@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:45 by arcornil          #+#    #+#             */
-/*   Updated: 2025/02/22 20:00:36 by lucorrei         ###   ########.fr       */
+/*   Updated: 2025/02/22 21:28:23 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstr(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 		i ++;
@@ -34,7 +34,7 @@ int	ft_strlen(char *str)
 
 bool	is_zero_padded(char *num_str)
 {
-	while(++num_str)
+	while (++num_str)
 	{
 		if (*num_str != '0')
 			return (false);
@@ -45,16 +45,16 @@ bool	is_zero_padded(char *num_str)
 bool	is_magnitude(char *num_str)
 {
 	bool	is_thousand;
-	
+
 	is_thousand = (ft_strlen(num_str) % 3 == 1);
 	return (is_thousand \
-		&&  *num_str == '1' \
-	       	&& is_zero_padded(num_str));
+		&& *num_str == '1'\
+		&& is_zero_padded(num_str));
 }
 
-bool	ft_strnequals(char *s1, char *s2, unsigned int n)
+bool	ft_strnequals(char *s1, char *s2, int n)
 {
-	unsigned int	i;
+	int	i;
 
 	i = 1;
 	if (n == 0)
@@ -65,5 +65,5 @@ bool	ft_strnequals(char *s1, char *s2, unsigned int n)
 		s1++;
 		s2++;
 	}
-	return ((*s1 - *s2) != 0);
+	return ((*s1 - *s2) == 0);
 }
