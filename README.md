@@ -5,4 +5,4 @@ Comme à son exécution, les commentaires sont à lire de haut en bas dans les f
 de bas en haut
 
 Si qqn a des questions gardez les pour demain pq on en discute ensemble! (il y a bcp de edge cases dont je ne  m'occupe pas pour
-l'instant, je sais"
+l'instant, je sais)
