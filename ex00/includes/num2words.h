@@ -6,6 +6,7 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdlib.h>
 
 typedef struct s_dictionary
 {
@@ -13,9 +14,9 @@ typedef struct s_dictionary
 	char	**words;
 }	t_dictionary;
 
-int	ft_atoi(char *str);
-void	ft_putstr(char *str);
-t_dictionary *get_dictionary(char *dict_path);
+int				ft_atoi(char *str);
+void			ft_putstr(char *str);
+t_dictionary	*get_dictionary(char *dict_path);
 
 # define PRINT_GOT_ERROR -1;
 # define PRINT_HORIZONTAL_LINE -2;
