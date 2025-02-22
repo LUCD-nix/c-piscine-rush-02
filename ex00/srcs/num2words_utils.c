@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:45 by arcornil          #+#    #+#             */
-/*   Updated: 2025/02/22 09:52:48 by arcornil         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:38:34 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,12 @@ void	ft_putstr(char *str)
 	write(1, str, i);
 }
 
-int	ft_atoi(char *str)
+int	ft_strlen(char *str)
 {
-	int		num;
-	bool	is_negative;
+	int	i;
 
-	while (*str == '\t' || *str == '\v' || *str == '\n'
-		|| *str == '\r' || *str == '\f' || *str == ' ')
-		str ++;
-	is_negative = false;
-	while (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			is_negative = !is_negative;
-		str ++;
-	}
-	num = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		num *= 10;
-		if (is_negative)
-			num -= *str - '0';
-		else
-			num += *str - '0';
-		str ++;
-	}
-	return (num);
+	i = 0;
+	while (str[i])
+		i ++;
+	return (i);
 }
