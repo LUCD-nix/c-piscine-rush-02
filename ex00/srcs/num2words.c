@@ -6,7 +6,7 @@
 /*   By: arcornil <arcornil@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 09:04:14 by arcornil          #+#    #+#             */
-/*   Updated: 2025/02/22 10:02:44 by arcornil         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:22:57 by arcornil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 	t_dictionary	*dict;
 	char			*num_str;
 	bool			custom_dict;
+	int				num;
 
 	if (!(argc >= 2 && argc <= 3))
 	{
@@ -32,8 +33,15 @@ int main(int argc, char **argv)
 		custom_dict = true;
 	}
 	//TODO: Check if number is valid
+	num = ft_atoi(num_str);
 	if (custom_dict)
 		dict = get_dictionary(argv[1]);
 	else
 		dict = get_dictionary(DEFAULT_DICT_PATH);
+	if (!dict)
+	{
+		ft_putstr("Dict Error \n");
+		return (1);
+	}
+	return(0);
 }
