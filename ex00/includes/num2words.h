@@ -9,13 +9,14 @@
 
 typedef struct s_dictionary
 {
+	int		*sizes;
 	char	**nums;
 	char	**words;
 }	t_dictionary;
 
-int	ft_atoi(char *str);
-void	ft_putstr(char *str);
-t_dictionary *get_dictionary(char *dict_path);
+void			ft_putstr(char *str);
+t_dictionary	*get_dictionary(char *dict_path);
+int				ft_strlen(char *str);
 
 # define PRINT_START_STOP -1;
 # define PRINT_HORIZONTAL_LINE -2;
